@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		872217D629E4F76E0045BC07 /* DanforthPWChangeview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872217D529E4F76E0045BC07 /* DanforthPWChangeview.swift */; };
+		872217D829E4F77C0045BC07 /* MacPWChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872217D729E4F77C0045BC07 /* MacPWChangeView.swift */; };
+		873A1EAA29E3ADC900C6F91F /* PasswordButtonViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A1EA929E3ADC900C6F91F /* PasswordButtonViews.swift */; };
 		87C4594829E2E3F100457D50 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C4594729E2E3F100457D50 /* SidebarView.swift */; };
 		87C4594A29E2E41500457D50 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C4594929E2E41500457D50 /* AboutView.swift */; };
 		87C4594C29E2E42300457D50 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C4594B29E2E42300457D50 /* PasswordView.swift */; };
@@ -19,12 +22,15 @@
 		87C6FB1D29E24F5300988A58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C6FB1C29E24F5300988A58 /* Assets.xcassets */; };
 		87C6FB2029E24F5300988A58 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C6FB1F29E24F5300988A58 /* Preview Assets.xcassets */; };
 		87C6FB2E29E250BB00988A58 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6FB2B29E250BB00988A58 /* WebViewModel.swift */; };
-		87C6FB2F29E250BB00988A58 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6FB2C29E250BB00988A58 /* String+Extensions.swift */; };
+		87C6FB2F29E250BB00988A58 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6FB2C29E250BB00988A58 /* StringExtension.swift */; };
 		87C6FB3029E250BB00988A58 /* MacPasswordValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6FB2D29E250BB00988A58 /* MacPasswordValidation.swift */; };
 		87C6FB3229E2519E00988A58 /* MenuIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6FB3129E2519E00988A58 /* MenuIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		872217D529E4F76E0045BC07 /* DanforthPWChangeview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanforthPWChangeview.swift; sourceTree = "<group>"; };
+		872217D729E4F77C0045BC07 /* MacPWChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacPWChangeView.swift; sourceTree = "<group>"; };
+		873A1EA929E3ADC900C6F91F /* PasswordButtonViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordButtonViews.swift; sourceTree = "<group>"; };
 		87C4594729E2E3F100457D50 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		87C4594929E2E41500457D50 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		87C4594B29E2E42300457D50 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
@@ -39,7 +45,7 @@
 		87C6FB1F29E24F5300988A58 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		87C6FB2129E24F5300988A58 /* Danforth_Support.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Danforth_Support.entitlements; sourceTree = "<group>"; };
 		87C6FB2B29E250BB00988A58 /* WebViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
-		87C6FB2C29E250BB00988A58 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		87C6FB2C29E250BB00988A58 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		87C6FB2D29E250BB00988A58 /* MacPasswordValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacPasswordValidation.swift; sourceTree = "<group>"; };
 		87C6FB3129E2519E00988A58 /* MenuIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +61,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		872217D229E4F68A0045BC07 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				87C4594729E2E3F100457D50 /* SidebarView.swift */,
+				87C4595129E2E96D00457D50 /* TabView.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		872217D329E4F68D0045BC07 /* Passwords */ = {
+			isa = PBXGroup;
+			children = (
+				87C4594B29E2E42300457D50 /* PasswordView.swift */,
+				872217D529E4F76E0045BC07 /* DanforthPWChangeview.swift */,
+				872217D729E4F77C0045BC07 /* MacPWChangeView.swift */,
+				873A1EA929E3ADC900C6F91F /* PasswordButtonViews.swift */,
+			);
+			path = Passwords;
+			sourceTree = "<group>";
+		};
+		872217D429E4F6990045BC07 /* Drives */ = {
+			isa = PBXGroup;
+			children = (
+				87C4594D29E2E43700457D50 /* NetworkDrivesView.swift */,
+			);
+			path = Drives;
+			sourceTree = "<group>";
+		};
+		873A1EA429E3638000C6F91F /* Links+About */ = {
+			isa = PBXGroup;
+			children = (
+				87C4594F29E2E45600457D50 /* LinksView.swift */,
+				87C4594929E2E41500457D50 /* AboutView.swift */,
+			);
+			path = "Links+About";
+			sourceTree = "<group>";
+		};
 		87C6FB0C29E24F5200988A58 = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +119,11 @@
 			children = (
 				87C6FB1829E24F5200988A58 /* Danforth_Support_App.swift */,
 				87C6FB1A29E24F5200988A58 /* ContentView.swift */,
-				87C6FB2A29E2500200988A58 /* Subviews */,
+				872217D229E4F68A0045BC07 /* Sidebar */,
+				872217D329E4F68D0045BC07 /* Passwords */,
+				872217D429E4F6990045BC07 /* Drives */,
+				873A1EA429E3638000C6F91F /* Links+About */,
+				87C6FB2A29E2500200988A58 /* Other */,
 				87C6FB2829E24FAC00988A58 /* Models */,
 				87C6FB1C29E24F5300988A58 /* Assets.xcassets */,
 				87C6FB2129E24F5300988A58 /* Danforth_Support.entitlements */,
@@ -98,24 +145,18 @@
 			children = (
 				87C6FB2D29E250BB00988A58 /* MacPasswordValidation.swift */,
 				87C6FB2B29E250BB00988A58 /* WebViewModel.swift */,
-				87C6FB2C29E250BB00988A58 /* String+Extensions.swift */,
+				87C6FB2C29E250BB00988A58 /* StringExtension.swift */,
 				87C4595329E2E9D100457D50 /* Tab.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		87C6FB2A29E2500200988A58 /* Subviews */ = {
+		87C6FB2A29E2500200988A58 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				87C4594729E2E3F100457D50 /* SidebarView.swift */,
-				87C4595129E2E96D00457D50 /* TabView.swift */,
-				87C4594929E2E41500457D50 /* AboutView.swift */,
-				87C4594B29E2E42300457D50 /* PasswordView.swift */,
-				87C4594D29E2E43700457D50 /* NetworkDrivesView.swift */,
-				87C4594F29E2E45600457D50 /* LinksView.swift */,
 				87C6FB3129E2519E00988A58 /* MenuIconView.swift */,
 			);
-			path = Subviews;
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,15 +231,18 @@
 			files = (
 				87C4594A29E2E41500457D50 /* AboutView.swift in Sources */,
 				87C4594C29E2E42300457D50 /* PasswordView.swift in Sources */,
-				87C6FB2F29E250BB00988A58 /* String+Extensions.swift in Sources */,
+				87C6FB2F29E250BB00988A58 /* StringExtension.swift in Sources */,
 				87C6FB1B29E24F5200988A58 /* ContentView.swift in Sources */,
 				87C4594E29E2E43700457D50 /* NetworkDrivesView.swift in Sources */,
 				87C4594829E2E3F100457D50 /* SidebarView.swift in Sources */,
 				87C4595029E2E45600457D50 /* LinksView.swift in Sources */,
+				873A1EAA29E3ADC900C6F91F /* PasswordButtonViews.swift in Sources */,
 				87C6FB3229E2519E00988A58 /* MenuIconView.swift in Sources */,
+				872217D829E4F77C0045BC07 /* MacPWChangeView.swift in Sources */,
 				87C6FB3029E250BB00988A58 /* MacPasswordValidation.swift in Sources */,
 				87C6FB2E29E250BB00988A58 /* WebViewModel.swift in Sources */,
 				87C4595229E2E96D00457D50 /* TabView.swift in Sources */,
+				872217D629E4F76E0045BC07 /* DanforthPWChangeview.swift in Sources */,
 				87C4595429E2E9D100457D50 /* Tab.swift in Sources */,
 				87C6FB1929E24F5200988A58 /* Danforth_Support_App.swift in Sources */,
 			);

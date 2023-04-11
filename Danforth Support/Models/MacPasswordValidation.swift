@@ -41,7 +41,6 @@ class MacPasswordValidation: ObservableObject {
                 }
                 self.isChangeAllowed()
                 return self.oldPasswordIsValid() ? "checkmark" : "xmark"
-                
             }
             .assign(to: &$oldPasswordCheck)
         

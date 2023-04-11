@@ -21,7 +21,7 @@ struct TabView: View {
             if isSelected {
                 Rectangle()
                     .foregroundColor(colorScheme == .dark ? .gray : .white)
-                    .opacity(colorScheme == .dark ? 0.4 : 0.2)
+                    .opacity(colorScheme == .dark ? 0.65 : 0.35)
                     .shadow(radius: 2, y: 3)
             }
             VStack (spacing: 3) {

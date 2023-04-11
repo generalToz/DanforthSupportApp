@@ -10,25 +10,27 @@ import SwiftUI
 struct SidebarView: View {
     @Environment(\.colorScheme) var colorScheme
     
+    @AppStorage("tabSymbol") var tabSelectedSymbol = ""
+    @AppStorage("tabTitle") var tabSelectedTitle = ""
+
     // The sidebar buttons
     let tabs = [
         Tab(sybmol: "info.circle.fill", title: "Info"),
         Tab(sybmol: "questionmark.circle.fill", title: "Support"),
-        Tab(sybmol: "key.icloud.fill", title: "Password"),
+        Tab(sybmol: "key.icloud.fill", title: "Passwords"),
         Tab(sybmol: "externaldrive.connected.to.line.below.fill", title: "Drives"),
         Tab(sybmol: "link.circle.fill", title: "Links")
     ]
     
     // To store the selected tab
-    @State var tabSelected = Tab(sybmol: "", title: "")
+//    @State var tabSelected = Tab(sybmol: "", title: "")
     
     var body: some View {
         
         ZStack {
-            // The background for the whole sidebar
+            // The solid background for the whole sidebar
             Rectangle()
                 .foregroundColor(.gray)
-                .opacity(0.35)
                 .frame(width: 75)
                 .shadow(radius: 2, x: 2)
             
@@ -47,15 +49,14 @@ struct SidebarView: View {
                 
                 // List of tabs active tabs
                 ForEach(tabs) { tab in
-                    TabView(tab: tab, isSelected: tabSelected == tab ? true : false)
+                    TabView(tab: tab, isSelected: tabSelectedTitle == tab.title ? true : false)
                         .onTapGesture {
                             // Assign tab so it knows to be highlighted
-                            tabSelected = tab
+                            tabSelectedTitle = tab.title
+                            tabSelectedSymbol = tab.sybmol
                         }
                 }
-                
-                
-                
+                                
                 // To keep everything tight to the top
                 Spacer()
             }
