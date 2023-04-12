@@ -57,7 +57,7 @@ struct PasswordView: View {
                     .padding()
                     Spacer()
                 }
-                .transition(.move(edge: .leading))
+                .transition(.scale)
             }
             
             // Display the Microsoft Password Change page

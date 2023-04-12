@@ -33,6 +33,10 @@ struct ContentView: View {
                         if tabSelectedTitle == "Passwords" {
                             PasswordView()
                         }
+                        else if tabSelectedTitle == "Drives" {
+                            NetworkDrivesView()
+                                .environmentObject(NetworkDrivesModel())
+                        }
                         else {
                             Spacer()
                         }

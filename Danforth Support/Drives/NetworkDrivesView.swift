@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct NetworkDrivesView: View {
+    @EnvironmentObject var model: NetworkDrivesModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Spacer()
+        
+        ZStack {
+            if !model.isAuthenticated && !model.isConnected {
+                DisconnectedView()
+                    .onDisappear {
+                        model.quitChecking = true
+                    }
+            }
+            else if model.isConnected && !model.isAuthenticated {
+                LoginView()
+            }
+            else {
+                DrivesMenuView()
+            }
+        }
+        Spacer()
     }
 }
 

@@ -16,9 +16,9 @@ struct SidebarView: View {
     // The sidebar buttons
     let tabs = [
         Tab(sybmol: "info.circle.fill", title: "Info"),
-        Tab(sybmol: "questionmark.circle.fill", title: "Support"),
         Tab(sybmol: "key.icloud.fill", title: "Passwords"),
         Tab(sybmol: "externaldrive.connected.to.line.below.fill", title: "Drives"),
+        Tab(sybmol: "questionmark.circle.fill", title: "Support"),
         Tab(sybmol: "link.circle.fill", title: "Links")
     ]
     
@@ -31,6 +31,7 @@ struct SidebarView: View {
             // The solid background for the whole sidebar
             Rectangle()
                 .foregroundColor(.gray)
+                .opacity(0.35)
                 .frame(width: 75)
                 .shadow(radius: 2, x: 2)
             

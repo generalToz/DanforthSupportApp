@@ -23,3 +23,9 @@ extension String {
         count > 9
     }
 }
+
+extension URL {
+    var isDirectory: Bool {
+        return (try? resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true
+    }
+}
