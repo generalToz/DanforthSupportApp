@@ -32,8 +32,9 @@ struct PasswordButtonViews: View {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color("colorBG"))
                     .opacity(isInside ? 0.65 : 1)
+                    .shadow(radius: 3, x: 2, y: 2)
             }
-            HStack (spacing: 25) {
+            HStack (spacing: 20) {
                 Image(type.rawValue == "Mac" ? "finder.logo" : "danforth.frond")
                     .renderingMode(colorScheme == .dark && type.rawValue == "Danforth" ? .template : .original)
                     .resizable()
@@ -60,7 +61,7 @@ struct PasswordButtonViews: View {
                         Text("Change your")
                         Text("\(type.rawValue) password")
                     }
-                    .font(.title)
+                    .font(.title2)
                     .bold()
                 }
             }
@@ -79,7 +80,7 @@ struct PasswordButtonViews: View {
 struct PasswordButtonViews_Previews: PreviewProvider {
     static var previews: some View {
         PasswordButtonViews(type: .danforth
-                            , isSuccess: true)
-            .frame(width: 350, height: 75)
+                            , isSuccess: false)
+            .frame(width: 280, height: 75)
     }
 }

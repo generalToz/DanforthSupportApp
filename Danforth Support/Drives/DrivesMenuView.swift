@@ -9,24 +9,16 @@ import SwiftUI
 
 struct DrivesMenuView: View {
     @EnvironmentObject var model: NetworkDrivesModel
-    
-    
-//    @State var drivesToMount = [NetworkDrive]()
-    
-    var body: some View {
         
-        let columns = [
-            GridItem(.flexible()),
-            GridItem(.flexible())
-        ]
+    var body: some View {
         
         VStack {
             TitleBarView()
             ZStack {
-                LazyVGrid (columns: columns, spacing: 12) {
+                VStack {
                     ForEach(model.drives) { drive in
                         ZStack {
-                            ButtonView(driveLetter: drive.letter, driveName: drive.name, isLoading: drive.isLoading)
+                            ButtonView(driveLetter: drive.letter, driveName: drive.name, isLoading: drive.isLoading, isAccessible: drive.isAccessible)
                                 .onTapGesture {
                                     // the button click
                                     if let i = model.drives.firstIndex(where: { $0.name == drive.name }) {       // flag to tell button to show progress view
@@ -36,52 +28,53 @@ struct DrivesMenuView: View {
                                     Task {
                                         await model.isConnected = model.connectionCheck()
                                         model.isAuthenticated = model.authenticationCheck()
-//                                        drivesToMount.append(drive)
+                                        //                                        drivesToMount.append(drive)
                                         let modelResult = await model.mountDrive(drive)
                                         if modelResult == "Inaccessible" {
                                             if let i = model.drives.firstIndex(where: { $0.name == drive.name }) {
                                                 model.drives[i].isAccessible = false
                                             }
                                         }
-//                                        drivesToMount = [NetworkDrive]()
+                                        //                                        drivesToMount = [NetworkDrive]()
                                         if let i = model.drives.firstIndex(where: { $0.name == drive.name }) {       // flag to tell button to hide progress view
                                             model.drives[i].isLoading = false
                                         }
                                     }
                                 }
                                 .disabled(model.isRefreshing || !drive.isAccessible)
-                                .blur(radius: drive.isAccessible ? 0 : 2)
-                            
-                            if !drive.isAccessible {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .foregroundColor(.red)
-                                    .opacity(drive.isAccessible ? 0 : 0.30)
-                                HStack (alignment: .center) {
-                                    Image(systemName: "bolt.slash.fill")
-                                    Text("Inaccessible")
-                                }
-//                                .foregroundColor(.white)
-                                .font(.title2)
-                                .bold()
-                            }
-                        }
-                    }
+//                                .blur(radius: drive.isAccessible ? 0 : 3)
+                           
+                        }  // Button creation
+                        .blur(radius: model.isRefreshing ? 3 : 0)
+                        
+                    } // ForEach
                 }
-                .padding(.horizontal, 10)
-                .blur(radius: model.isRefreshing ? 1.2 : 0)
-                
                 if model.isRefreshing {
                     ProgressView()
-                }
-            }
-            Spacer()
+                        .scaleEffect(1.5)
+                } // end if
+            } // zstack
             
-            // tool bar at bottom
-            ToolBarView()
+            HStack {
+                Spacer()
+                Text("Logout") // \(model.username)")
+                    .foregroundColor(.white)
+                    .font(.subheadline)
+                    .shadow(radius: 1, x: 1, y: 1)
+                    .onTapGesture {
+                        model.storedPassword = ""
+                        model.password = ""
+                        model.isAuthenticated = false
+                        // add kdestroy?
+                    }
+            } // logout view
+            .padding(.bottom, 12)
+            .padding(.horizontal, 4)
+            Spacer()
         }
-        .padding(.top, 20)
+        .frame(width: 280)
         .onAppear {
-
+            
             model.isAuthenticated = model.authenticationCheck()
             //            model.getDrives()
             if model.networkDrivesData.isEmpty {
@@ -90,6 +83,7 @@ struct DrivesMenuView: View {
             model.loadDrives()
             
         }
+        
     }
 }
 
@@ -97,6 +91,7 @@ struct DrivesMenuView_Previews: PreviewProvider {
     static var previews: some View {
         DrivesMenuView()
             .environmentObject(NetworkDrivesModel())
-            .frame(width: 400, height: 325)
+            .frame(width: 320)
+            .frame(minHeight: 600)
     }
 }

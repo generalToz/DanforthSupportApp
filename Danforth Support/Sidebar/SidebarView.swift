@@ -15,15 +15,12 @@ struct SidebarView: View {
 
     // The sidebar buttons
     let tabs = [
-        Tab(sybmol: "info.circle.fill", title: "Info"),
+        Tab(sybmol: "info.circle.fill", title: "Info"),       // TODO: make Info page
         Tab(sybmol: "key.icloud.fill", title: "Passwords"),
         Tab(sybmol: "externaldrive.connected.to.line.below.fill", title: "Drives"),
-        Tab(sybmol: "questionmark.circle.fill", title: "Support"),
+        Tab(sybmol: "questionmark.circle.fill", title: "Support"),       // TODO: make Support page
         Tab(sybmol: "link.circle.fill", title: "Links")
     ]
-    
-    // To store the selected tab
-//    @State var tabSelected = Tab(sybmol: "", title: "")
     
     var body: some View {
         

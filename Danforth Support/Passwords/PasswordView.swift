@@ -23,7 +23,14 @@ struct PasswordView: View {
             // Initial page with options for resetting either password
             if !showDanforthPWChange && !showMacPWChange {
                 VStack {
-                    Spacer()
+                    HStack (alignment: .center) {
+                        Text("Password Changes")
+                            .font(.title2)
+                            .bold()
+                        Spacer()
+                    }
+                    .frame(height: 75)
+                    .padding(.horizontal, 4)
                     // Buttons
                     VStack (alignment: .leading, spacing: 30) {
                         // Danforth Password Change
@@ -41,8 +48,7 @@ struct PasswordView: View {
                                 }
                             }
                     }
-                    .frame(height: 225)
-                    .padding()
+                    .frame(height: 200)
                     Spacer ()
                     // Reminder text
                     HStack {
@@ -52,9 +58,8 @@ struct PasswordView: View {
                             .frame(width: 50)
                         Text("**Reminder:** Your Mac's password does not sync with your Danforth password and must be changed separately.")
                             .font(.body)
-                            .frame(width: 250)
+                            .frame(width: 220)
                     }
-                    .padding()
                     Spacer()
                 }
                 .transition(.scale)
@@ -62,9 +67,9 @@ struct PasswordView: View {
             
             // Display the Microsoft Password Change page
             if showDanforthPWChange {
-                
-               DanforthPWChangeview(showDanforthPWChange: $showDanforthPWChange, danforthPasswordSuccess: $danforthPasswordSuccess)
+                DanforthPWChangeview(showDanforthPWChange: $showDanforthPWChange, danforthPasswordSuccess: $danforthPasswordSuccess)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.top)
                     .shadow(radius: 3, x: 2, y: 2)
                     .transition(.move(edge: .trailing))
             }
@@ -77,8 +82,9 @@ struct PasswordView: View {
         }
         .animation(.easeIn, value: showMacPWChange)
         .animation(.easeIn, value: showDanforthPWChange)
-        .padding(.top)
-        .padding(.horizontal)
+        .frame(width: 280)
+//        .padding(.top)
+//        .padding(.horizontal)
 
 // FIXME: don't want app to quit when timeout
 //        if pageURL.contains(timeOutPage) {
@@ -94,6 +100,6 @@ struct PasswordView: View {
 struct PasswordView_Previews: PreviewProvider {
     static var previews: some View {
         PasswordView()
-            .frame(width: 375, height: 450)
+            .frame(width: 320, height: 450)
     }
 }

@@ -12,8 +12,6 @@ struct NetworkDrivesView: View {
 
     var body: some View {
         
-        Spacer()
-        
         ZStack {
             if !model.isAuthenticated && !model.isConnected {
                 DisconnectedView()
@@ -35,5 +33,6 @@ struct NetworkDrivesView: View {
 struct NetworkDrivesView_Previews: PreviewProvider {
     static var previews: some View {
         NetworkDrivesView()
+            .environmentObject(NetworkDrivesModel())
     }
 }

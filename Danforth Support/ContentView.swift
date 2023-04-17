@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @AppStorage("tabSymbol") var tabSelectedSymbol = ""
     @AppStorage("tabTitle") var tabSelectedTitle = ""
-    
+        
     var body: some View {
         // ZStack to ensure that sidebar is always on top
         ZStack {
@@ -21,10 +21,10 @@ struct ContentView: View {
                     .foregroundColor(.clear)
                     .frame(width: 75)
                 ZStack {
-                    // Background rect to maintain total shape to 450px
+                    // Background rect to maintain total shape to 390px
                     Rectangle()
                         .foregroundColor(.clear)
-                        .frame(width: 375)
+                        .frame(width: 320)
                         .frame(minHeight: 500)
 
                     // PageViews
@@ -37,6 +37,12 @@ struct ContentView: View {
                             NetworkDrivesView()
                                 .environmentObject(NetworkDrivesModel())
                         }
+                        else if tabSelectedTitle == "Links" {
+                            LinksView()
+                        }
+                        else if tabSelectedTitle == "About" {
+                            AboutView()
+                        }
                         else {
                             Spacer()
                         }
@@ -44,6 +50,9 @@ struct ContentView: View {
                         // Bottom toolbar at the bottom
                         HStack {
                             Text("About")
+                                .onTapGesture {
+                                    tabSelectedTitle = "About"
+                                }
                             Divider()
                                 .frame(height: 15)
                             Text("Quit")
@@ -51,8 +60,8 @@ struct ContentView: View {
                                     NSApp.terminate(nil)
                                 }
                         }
-                        .font(.footnote)
-                        .padding()
+                        .font(.caption)
+                        .padding(.bottom)
                     }
                 }
             }
@@ -70,7 +79,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .frame(width: 420)
+            .frame(width: 395)
             .frame(minHeight: 500)
     }
 }

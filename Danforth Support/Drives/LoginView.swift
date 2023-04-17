@@ -16,58 +16,64 @@ struct LoginView: View {
     
     var body: some View {
         
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(Color("colorBG"))
-                .frame(width: 320, height: 280)
-                .shadow(radius: 3, x: 2, y: 2)
-            VStack {
-                Text("Please login to your Danforth account:")
-                    .padding(.vertical)
+        VStack {
+            Spacer()
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color("colorBG"))
+                    .frame(width: 280, height: 280)
+                    .shadow(radius: 3, x: 2, y: 2)
                 VStack {
-                    TextField("Danforth user name", text: $model.username)
-                    SecureField("Danforth password", text: $model.password)
-                }
-                .disabled(submitted)
-                Text("Username or password is incorrect")
-                    .font(.callout)
-                    .foregroundColor(.red)
-                    .opacity(loginFailed && !model.isAuthenticated ? 1 : 0)
-                HStack {
-                    Spacer()
-                    Button("Continue") {
-                        Task {
-                            submitted = true    // disables button and fields
-                            model.isConnected = await model.connectionCheck()
-                            if model.isConnected {
-                                displayProgressView = true
-                                // false delay
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                                    displayProgressView = false
-                                    model.isAuthenticated = model.authenticationCheck()
-                                    model.getDrives()
-                                    
-                                    // kickback invalid login
-                                    if !model.isAuthenticated {
-                                        loginFailed = true
-                                        submitted = false
+                    Text("Please login to your Danforth account:")
+                        .padding(.vertical)
+                    VStack {
+                        TextField("Danforth user name", text: $model.username)
+                        SecureField("Danforth password", text: $model.password)
+                    }
+                    .disabled(submitted)
+                    Text("Username or password is incorrect")
+                        .font(.callout)
+                        .foregroundColor(.red)
+                        .opacity(loginFailed && !model.isAuthenticated ? 1 : 0)
+                    HStack {
+                        Spacer()
+                        Button("Continue") {
+                            Task {
+                                submitted = true    // disables button and fields
+                                model.isConnected = await model.connectionCheck()
+                                if model.isConnected {
+                                    displayProgressView = true
+                                    // false delay
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                        displayProgressView = false
+                                        model.isAuthenticated = model.authenticationCheck()
+                                        model.getDrives()
+                                        
+                                        // kickback invalid login
+                                        if !model.isAuthenticated {
+                                            loginFailed = true
+                                            submitted = false
+                                        }
                                     }
                                 }
                             }
                         }
+                        .disabled(submitted)
+                        .keyboardShortcut(.defaultAction)
+                        .padding(.bottom)
                     }
-                    .disabled(submitted)
-                    .keyboardShortcut(.defaultAction)
-                    .padding(.bottom)
+                }
+                .padding(.horizontal, 75)
+                .blur(radius: submitted ? 1.2 : 0)
+                
+                if displayProgressView {
+                    ProgressView()
+                        .scaleEffect(1.2)
                 }
             }
-            .padding(.horizontal, 75)
-            .blur(radius: submitted ? 1.2 : 0)
-
-            if displayProgressView {
-                ProgressView()
-                    .scaleEffect(1.2)
-            }
+            
+            Spacer()
         }
     }
 }

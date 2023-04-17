@@ -20,8 +20,6 @@
 // Turns out the password doesn't need to be modified... with kinit, you can just mount the drives without authentication.  Should re-check authorization every time drive is launched.
 
 
-
-
 import SwiftUI
 
 class NetworkDrivesModel: ObservableObject {
@@ -159,16 +157,16 @@ class NetworkDrivesModel: ObservableObject {
                 rawDrivesData.append("G:%//nas01/public")
                 rawDrivesData.append("R:%//nas01/research")
                 // for testing
-                // rawDrivesData.append("M:%//fp01/Cafe$")
-                // rawDrivesData.append("N:%//fp01/Dining_Cards$")
-                // rawDrivesData.append("S:%//fp01/Development")
-                // rawDrivesData.append("V:%//fp01/Events$")
-                // rawDrivesData.append("X:%//fp01/Phase_B_Specifications$")
-                // rawDrivesData.append("Z:%//nas01/CAFECAM$")
-                // rawDrivesData.append("Y:%//fp01/AgTechNext$")
-                // rawDrivesData.append("O:%//fp01/Development_Events$")
-                // rawDrivesData.append("T:%//fp01/techmanage$")
-                // rawDrivesData.append("L:%//tbsds1515/burch_smith_lab")
+                 rawDrivesData.append("M:%//fp01/Cafe$")
+                 rawDrivesData.append("N:%//fp01/Dining_Cards$")
+                 rawDrivesData.append("S:%//fp01/Development")
+                 rawDrivesData.append("V:%//fp01/Events$")
+                 rawDrivesData.append("X:%//fp01/Phase_B_Specifications$")
+                 rawDrivesData.append("Z:%//nas01/CAFECAM$")
+                 rawDrivesData.append("Y:%//fp01/AgTechNext$")
+                 rawDrivesData.append("O:%//fp01/Development_Events$")
+                 rawDrivesData.append("T:%//fp01/techmanage$")
+                 rawDrivesData.append("L:%//tbsds1515/burch_smith_lab")
             }
             
         } catch {
@@ -311,7 +309,7 @@ class NetworkDrivesModel: ObservableObject {
 class Storage: NSObject {
     
     // This should be added below your View Model
-    // Borrowed code from https://stackoverflow.com/questions/63166706/how-to-store-nested-arrays-in-appstorage-for-swiftui
+    // Modified code from https://stackoverflow.com/questions/63166706/how-to-store-nested-arrays-in-appstorage-for-swiftui
     
     static func archiveDrivesArray(object: [String]) -> Data {
         do {
@@ -324,12 +322,14 @@ class Storage: NSObject {
     
     static func loadDrivesArray(data: Data) -> [String] {
         do {
-            guard let array = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String] else {
+            guard let array = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, NSString.self], from: data) as? [String] else {
                 return []
             }
+            
             return array
         } catch {
             fatalError("loadStringArray - Can't encode data: \(error)")
         }
     }
 }
+
