@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DrivesMenuView: View {
     @EnvironmentObject var model: NetworkDrivesModel
+    
+    @State private var showUserName = false
         
     var body: some View {
         
@@ -39,6 +41,7 @@ struct DrivesMenuView: View {
                                         if let i = model.drives.firstIndex(where: { $0.name == drive.name }) {       // flag to tell button to hide progress view
                                             model.drives[i].isLoading = false
                                         }
+                                        model.drivesMounted = model.mountedDrivesCheck()
                                     }
                                 }
                                 .disabled(model.isRefreshing || !drive.isAccessible)
@@ -57,9 +60,10 @@ struct DrivesMenuView: View {
             
             HStack {
                 Spacer()
+                Text("\(model.username)")
+                    .opacity(showUserName ? 1 : 0)
                 Text("Logout") // \(model.username)")
                     .foregroundColor(.white)
-                    .font(.subheadline)
                     .shadow(radius: 1, x: 1, y: 1)
                     .onTapGesture {
                         model.storedPassword = ""
@@ -67,7 +71,12 @@ struct DrivesMenuView: View {
                         model.isAuthenticated = false
                         // add kdestroy?
                     }
+                    .onHover { inside in
+                        if inside { showUserName = true }
+                        else { showUserName = false }
+                    }
             } // logout view
+            .font(.subheadline)
             .padding(.bottom, 12)
             .padding(.horizontal, 4)
             Spacer()
@@ -76,14 +85,11 @@ struct DrivesMenuView: View {
         .onAppear {
             
             model.isAuthenticated = model.authenticationCheck()
-            //            model.getDrives()
             if model.networkDrivesData.isEmpty {
                 model.getDrives()
             }
             model.loadDrives()
-            
         }
-        
     }
 }
 

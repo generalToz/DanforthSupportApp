@@ -26,12 +26,12 @@ struct ButtonView: View {
         ZStack (alignment: .leading) {
             ZStack (alignment: .leading) {
                 if isAccessible {
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(insideButton ? Color("colorButtonIn") : Color("colorButtonOut"))
                         .shadow(radius: shadowRadius, x: shadowX, y: shadowY)
                 }
                 else{
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(.red)
                         .opacity(0.8)
                 }
@@ -63,11 +63,16 @@ struct ButtonView: View {
                         else {
                             Circle()
                                 .fill(.shadow(.inner(radius: 1, x: 1, y: 1)))
-                                .foregroundColor(insideButton || !isAccessible ? .green : .blue)
+                                .foregroundColor(model.drivesMounted.contains(driveName) ? .green : .blue)
                             Text(driveLetter)
                                 .foregroundColor(.white)
                                 .font(.title2)
                                 .bold()
+                            if insideButton && !model.drivesMounted.contains(driveName) {
+                                Circle()
+                                    .stroke(lineWidth: 4)
+                                    .foregroundColor(.green)
+                            }
                         }
                     }
                     .frame(height: 35)

@@ -22,6 +22,7 @@ struct MacPWChangeView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color("colorBG"))
+                    .opacity(0.8)
                     .frame(width: 280, height: 280)
                     .shadow(radius: 3, x: 2, y: 2)
                 

@@ -33,12 +33,8 @@ struct RefreshButton: View {
                 }
         }
         .onHover { inside in
-            if inside {
-                insideButton = true
-            }
-            else {
-                insideButton = false
-            }
+            if inside { insideButton = true }
+            else { insideButton = false }
         }
     }
 }

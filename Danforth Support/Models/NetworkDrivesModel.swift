@@ -5,8 +5,6 @@
 //  Created by Alex Tosspon on 3/23/23.
 //
 
-
-
 // ******** NOTES:
 // CHANGE BEHAVIOR: run a continuous check ONLY while Danforth network is not availalbe
 // once available, then have it stop at either login or menu views
@@ -32,12 +30,12 @@ class NetworkDrivesModel: ObservableObject {
     @Published var quitChecking = false
     @Published var isAuthenticated = false
     @Published var isRefreshing = false
-    
+        
     @Published var username = ""
     @Published var password = ""
     
     @Published var drives = [NetworkDrive]()
-    @Published var drivesMounted = [NetworkDrive]()
+    @Published var drivesMounted = [String]()
     
     @Published var buttonClicked = false
     
@@ -111,7 +109,6 @@ class NetworkDrivesModel: ObservableObject {
         } catch {
             print("authenticationCheck() failure")
         }
-        //        print("authenticationCheck() for \(username):\(password) | \(authenticated) \"echo \(password) > /tmp/.ddpsc; kinit --password-file=\"/tmp/.ddpsc\" \(username); rm /tmp/.ddpsc\"") // ; kdestroy")
         print("authenticationResult() " + String(authenticationResult.isEmpty ? "true" : authenticationResult))
         return authenticated
     }
@@ -239,21 +236,28 @@ class NetworkDrivesModel: ObservableObject {
         for data in rawDrivesData {
             drives.append(NetworkDrive(data: data))
         }
+        drivesMounted = mountedDrivesCheck()
     }
     
-//    func checkIsMounted(_ drivename: String) -> Bool {
-//        var lsResult = ""
-//        do {
-//           lsResult = try shell("ls /tmp/ddpsc.\"\(drivename)\"/")
-//        } catch {
-//            print("checkIsMounted() failure")
-//        }
-//        if !lsResult.isEmpty {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
+    // Collect names of drives already mounted
+    func mountedDrivesCheck() -> [String] {
+        drivesMounted = [String]()
+        print("* mountedDrivesCheck() called")
+        var driveNames = [String]()
+        for drive in drives {
+            do {
+                let mountCheck = try shell("ls /tmp/ddpsc.\"\(drive.name)\"/")
+                if !mountCheck.isEmpty && !mountCheck.contains("No such file") {
+                    print(mountCheck)
+                    driveNames.append(drive.name)
+                }
+            } catch {
+                print("cleanupNetLogon() failed")
+            }
+        }
+        
+        return driveNames
+    }
     
     // MARK: - Mount Network Drive
     

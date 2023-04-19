@@ -67,12 +67,8 @@ struct PasswordButtonViews: View {
             }
         }
         .onHover { inside in
-            if inside {
-                isInside = true
-            }
-            else {
-                isInside = false
-            }
+            if inside { isInside = true }
+            else { isInside = false }
         }
     }
 }

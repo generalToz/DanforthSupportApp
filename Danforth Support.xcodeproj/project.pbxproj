@@ -104,6 +104,7 @@
 				872217E329E621420045BC07 /* DisconnectedView.swift */,
 				872217E129E621370045BC07 /* LoginView.swift */,
 				872217E729E621B60045BC07 /* DrivesMenuView.swift */,
+				872217DF29E621040045BC07 /* ButtonView.swift */,
 				8759DC2429E71D6B00308E92 /* TitleBarView.swift */,
 				8759DC2629E7636D00308E92 /* RefreshButton.swift */,
 			);
@@ -164,7 +165,6 @@
 		87C6FB2829E24FAC00988A58 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				872217DF29E621040045BC07 /* ButtonView.swift */,
 				87C4595329E2E9D100457D50 /* Tab.swift */,
 				87C6FB2B29E250BB00988A58 /* WebViewModel.swift */,
 				87C6FB2D29E250BB00988A58 /* MacPasswordValidation.swift */,
